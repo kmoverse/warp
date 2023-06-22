@@ -1,0 +1,17 @@
+<.flash_group flash={@flash} />
+<div>
+    <h1 class="text-3xl font-bold">
+        <.icon name="hero-exclamation-circle" class="mx-1 w-6 h-6 text-brand" />
+        <span>Warp not found</span>
+    </h1>
+    <p class="my-6 dark:text-gray-500">
+        We could not find the Warp you were looking for.
+    </p>
+
+    <div class="text-sm text-gray-300">
+        <div class="font-semibold">Warp ID: <%= @id %>
+        </div>
+        <div class="font-semibold">Server Error: <%= @error %>
+        </div>
+    </div>
+</div>

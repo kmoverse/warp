@@ -1,0 +1,19 @@
+<.flash_group flash={@flash} />
+<div>
+  <h1 class="text-3xl font-bold">
+    <.icon name="hero-link" class="mx-1 w-6 h-6 animate-bounce text-brand" />
+    <span>Taking you through Warp...</span>
+  </h1>
+  <%= if @warp.type==:link do %>
+    <p class="my-6 dark:text-gray-500">
+      You will be redirected to your destination (<a href={@other.long_url} class="text-blue-600">
+        <%= @other.long_url %>
+      </a>) very shortly.
+    </p>
+    <meta http-equiv="refresh" content={"#{@delay};url=#{@other.long_url}"} />
+    <%= end %>
+
+      <div class=" text-sm text-gray-300">
+        <span class="font-semibold">Warp ID: <%= @id %></span>
+      </div>
+</div>

@@ -1,0 +1,57 @@
+<.flash_group flash={@flash} />
+<div>
+  <h1 class="text-3xl font-bold">
+    <.icon name="hero-link" class="mx-1 w-6 h-6 text-brand" />
+    <span>Create new <span class="text-brand">Warp</span></span>
+  </h1>
+  <p class="my-6 dark:text-gray-500">
+    You'll be creating a new Warp! Very exciting!
+  </p>
+  <%= if assigns[:slug] do %>
+  <div class="rounded-lg py-4 px-6 mb-8 bg-brand/80 text-white">
+    <h1 class="text-lg font-semibold my-2">You just created a new Warp!</h1>
+    <p>Share this short URL with your friends and spread the word about Warp:</p>
+    <div class="my-4 flex items-center gap-2">
+      <input
+        id="urlResult"
+        type="text"
+        name="warp-url"
+        value={"#{@base_url}/#{@slug}"}
+        label="URL"
+        readonly
+        class="block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6 border-zinc-300 focus:border-zinc-400 cursor-text"
+      />
+      <.button id="copyURL" class="w-48">Copy URL</.button>
+    </div>
+  </div>
+  <% end %>
+  <.form :let={f} for={@conn.params} action={~p"/new"}>
+    <div class="flex gap-3 items-center my-4">
+      <%= checkbox(f, :instant) %>
+      <label for="instant">
+        <span class="font-bold">Warp instantly?</span>
+        <span class="text-gray-500">If checked, warp instantly to the link without an intermediate
+          page. Zoom!</span>
+      </label>
+    </div>
+    <hr />
+    <div class="my-4">
+      <.input field={f[:long_url]} label="Long URL" />
+    </div>
+    <%= hidden_inputs_for(f) %>
+    <%= submit("Create Warp!",
+      class: "bg-brand hover:bg-brand/90 text-white font-bold py-2 px-4 rounded-lg"
+    ) %>
+  </.form>
+  <script>
+    document.getElementById("urlResult").onclick = function (e) {
+        document.getElementById("urlResult").select();
+    }
+
+    document.getElementById("copyURL").onclick = function (e) {
+        document.getElementById("urlResult").select();
+        navigator.clipboard.writeText(document.getElementById("urlResult").value);
+        alert("Copied the Warp URL to your clipboard! Enjoy!");
+    }
+  </script>
+</div>

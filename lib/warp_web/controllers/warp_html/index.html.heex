@@ -1,0 +1,38 @@
+<.flash_group flash={@flash} />
+<div>
+    <h1 class="text-3xl font-bold">
+        <.icon name="hero-link" class="mx-1 w-6 h-6 text-brand" />
+        <span>All <span class="text-brand">Warps</span></span>
+    </h1>
+    <p class="my-6 dark:text-gray-500">
+        Listing all Warps and their links.
+    </p>
+    <.table rows={@links} id="links">
+        <:col :let={link} label="ID">
+            <%= link.id %>
+        </:col>
+        <:col :let={link} label="Long URL">
+            <%= link.long_url %>
+        </:col>
+        <:col :let={link} label="Warp ID">
+            <%= link.warp_id %>
+        </:col>
+    </.table>
+    <.table rows={@warps} id="warps">
+        <:col :let={warp} label="ID">
+            <%= warp.id %>
+        </:col>
+        <:col :let={warp} label="Type">
+            <%= warp.type %>
+        </:col>
+        <:col :let={warp} label="Slug">
+            <%= warp.slug %>
+        </:col>
+        <:col :let={warp} label="Namespace">
+            <%= warp.namespace %>
+        </:col>
+        <:col :let={warp} label="Instant?">
+            <%= warp.instant %>
+        </:col>
+    </.table>
+</div>
